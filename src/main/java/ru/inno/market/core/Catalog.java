@@ -6,7 +6,6 @@ import ru.inno.market.model.Item;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 public class Catalog {
     private Map<Item, Integer> storage;
@@ -63,16 +62,20 @@ public class Catalog {
         );
     }
 
-    public Item getItemById(int id){
-        Item item = storage.keySet().stream().filter(x -> x.getId() == id).findFirst().orElseThrow();
+    public void takeItemById(int id){
+        Item item = getItemById(id);
         int count = storage.get(item);
         if (count > 0){
-            count -= 1;
+            count --;
             storage.put(item, count);
-            return item;
+            return;
         }
         throw new NoSuchElementException("Товар закончился");
 
+    }
+
+    public Item getItemById(int id){
+        return storage.keySet().stream().filter(x -> x.getId() == id).findFirst().orElseThrow();
     }
 
     public int getCountForItem(Item i){

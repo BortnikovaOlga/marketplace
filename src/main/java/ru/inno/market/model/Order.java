@@ -36,7 +36,7 @@ public class Order {
 
     public void applyDiscount(double discount) {
         if (!discountApplied) {
-            totalPrice *= (1- discount);
+            totalPrice *= (1 - discount);
             discountApplied = true;
         }
     }
@@ -46,8 +46,17 @@ public class Order {
     }
 
     public Map<Item, Integer> getCart() {
-        return cart;
+        return new HashMap<Item, Integer>(cart);
     }
+
+    public int getCartSize() {
+        return cart.size();
+    }
+
+    public int getCountForItem(Item item) {
+        return cart.get(item);
+    }
+
 
     public double getTotalPrice() {
         return totalPrice;
@@ -71,13 +80,13 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", cart=" + cart +
-                ", client=" + client +
-                ", totalPrice=" + totalPrice +
-                ", discountApplied=" + discountApplied +
-                '}';
+        return "Order{" + "\n" +
+                "id=" + id + "\n" +
+                "cart=" + cart + "\n" +
+                "client=" + client + "\n" +
+                "totalPrice=" + totalPrice + "\n" +
+                "discountApplied=" + discountApplied + "\n" +
+                '}' + "\n";
     }
 }
 

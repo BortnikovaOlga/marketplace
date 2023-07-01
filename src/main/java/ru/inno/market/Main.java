@@ -17,10 +17,10 @@ public class Main {
 
         Client client = new Client(1, "Dima");
         Item item =  catalog.getItemById(1);
-        int id = service.createOrderFor(client);
-        service.addItemToOrder(item, id);
-        service.applyDiscountForOrder(id, PromoCodes.FIRST_ORDER);
-        Order order = service.getOrderInfo(id);
+        int orderId = service.createOrderFor(client);
+        service.addItemToOrder(item, orderId);
+        service.applyDiscountForOrder(orderId, PromoCodes.FIRST_ORDER);
+        Order order = service.getOrderInfo(orderId);
 
         System.out.println(order);
         System.out.println(order.getCart().size() == 1);
